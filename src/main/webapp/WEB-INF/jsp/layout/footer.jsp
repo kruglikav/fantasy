@@ -1,0 +1,1 @@
+<div class='footer'>My Footer</div>
