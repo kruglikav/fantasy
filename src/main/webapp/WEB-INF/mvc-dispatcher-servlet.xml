@@ -29,6 +29,5 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
     </bean>
     <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
 </beans>
