@@ -4,13 +4,16 @@
 <html>
 <head>
 <link href="<c:url value='/css/layout.css'/>" rel="stylesheet">
+<script src="<c:url value='/js/jquery.js'/>"></script>
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>
+<div id="full-content">
+    <tiles:insertAttribute name="header" />
+    <tiles:insertAttribute name="body" />
+    <tiles:insertAttribute name="footer" />
+</div>
 
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="body" />
-	<tiles:insertAttribute name="footer" />
 
 </body>
 </html>

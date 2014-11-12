@@ -8,8 +8,8 @@
         <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
     </definition>
 
-    <definition name="home" extends="baseLayout">
+    <definition name="chat" extends="baseLayout">
         <put-attribute name="title" value="home title" />
-        <put-attribute name="body" value="/WEB-INF/jsp/hello.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/chat.jsp" />
     </definition>
 </tiles-definitions>
