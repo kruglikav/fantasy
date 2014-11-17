@@ -10,7 +10,9 @@
 <body>
 <div id="full-content">
     <tiles:insertAttribute name="header" />
-    <tiles:insertAttribute name="body" />
+    <div style="min-height:90%;text-align: justify">
+        <tiles:insertAttribute name="body" />
+    </div>
     <tiles:insertAttribute name="footer" />
 </div>
 

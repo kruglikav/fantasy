@@ -30,4 +30,10 @@
     </bean>
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
+    <!--For Jasper Reports-->
+    <!--<import resource="jasper-view.xml"/>
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="location" value="/WEB-INF/jasper-view.xml"/>
+        <property name="order" value="0"/>
+    </bean>-->
 </beans>

@@ -39,6 +39,11 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
         <!--Apache Tiles-->
         <dependency>
             <groupId>org.apache.tiles</groupId>
@@ -93,6 +98,19 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!--JSON-->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.9</version>
+        </dependency>
+        <!--Jasper Reports-->
+       <!-- <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.5.2</version>
+        </dependency>-->
+
     </dependencies>
     <build>
         <finalName>fantasy</finalName>

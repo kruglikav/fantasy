@@ -12,4 +12,14 @@
         <put-attribute name="title" value="home title" />
         <put-attribute name="body" value="/WEB-INF/jsp/chat.jsp" />
     </definition>
+
+    <definition name="games" extends="baseLayout">
+        <put-attribute name="title" value="home title" />
+        <put-attribute name="body" value="/WEB-INF/jsp/games.jsp" />
+    </definition>
+
+    <definition name="game" extends="baseLayout">
+        <put-attribute name="title" value="home title" />
+        <put-attribute name="body" value="/WEB-INF/jsp/game.jsp" />
+    </definition>
 </tiles-definitions>

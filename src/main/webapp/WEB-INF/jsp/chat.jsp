@@ -9,13 +9,13 @@
     margin:5px;
 }
 </style>
-<div style="min-height:90%;text-align: justify">
+
     <div id="chat">
     </div>
     <br/>
     <input id="msg" type="text" style="margin: 5px"/>
     <button id="submit">Send</button>
-</div>
+
 
 <script>
     jQuery(function($) {
