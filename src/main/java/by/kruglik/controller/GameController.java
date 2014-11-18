@@ -55,6 +55,11 @@ public class GameController {
                         });
                         commonManager.start();
                         gameManager.start();
+                        for (Game g : games.values()){
+                            if (g.getCurrentNumberPlayers()==g.getNumberPlayers()){
+                                games.remove(g.getId());
+                            }
+                        }
 
                         try {
                             gameManager.join();
@@ -155,7 +160,7 @@ public class GameController {
     @RequestMapping(value = "/update",params = "id")
     @ResponseBody
     public DeferredResult<Game> updateGame(@RequestParam int id) {
-        log.debug(String.format("add conn to game %n",id));
+        log.debug(String.format("add conn to game %s",id));
         final DeferredResult<Game> df = new DeferredResult<Game>();
         gameConnections.put(df,id);
         df.onCompletion(new Runnable() {

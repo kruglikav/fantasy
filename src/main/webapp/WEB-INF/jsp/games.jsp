@@ -2,7 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<script src="<c:url value='/js/games.js'/>">
+<%
+    java.util.Date currDate = new java.util.Date();
+%>
+<script src="<c:url value='/js/games.js'><c:param name="v" value="<%=java.lang.Long.toString(currDate.getTime())%>"/></c:url>">
 
 </script>
 
