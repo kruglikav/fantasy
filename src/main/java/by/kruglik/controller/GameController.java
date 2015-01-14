@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Created by kruglik on 17.11.2014.
@@ -33,11 +36,35 @@ public class GameController {
                      log.debug("ConnectionManager run");
                     if (updated) {
                         log.debug("something updated in games");
+			/*ExecutorService executorService = Executors.newFixedThreadPool(2);
+			Future<?> future1 = executorService.submit(new Runnable() {
+			    @Override
+			    public void run() {
+				for (DeferredResult<Map<Integer, Game>> conn : commonConnections) {
+				    log.debug("set result for common connection");
+				    conn.setResult(games);
+				}
+			    }
+			});
+			Future<?> future2 = executorService.submit(new Runnable() {
+			    @Override
+			    public void run() {
+				for (Map.Entry<DeferredResult<Game>,Integer> entry : gameConnections.entrySet()){
+				    Integer gameId = entry.getValue();
+				    Game game = games.get(gameId);
+				    entry.getKey().setResult(game);
+				    log.debug(String.format("set result for game %n connection ",gameId));
+				}
+			    }
+			});
+			while (!future1.isDone()&& !future2.isDone()){
+
+			}*/
                         Thread commonManager = new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 for (DeferredResult<Map<Integer, Game>> conn : commonConnections) {
-                                    log.debug("set result for common connection");
+                                    log.debug(String.format("set result for common connection and games size is %d ",games.size()));
                                     conn.setResult(games);
                                 }
                             }
@@ -47,23 +74,25 @@ public class GameController {
                             public void run() {
                                 for (Map.Entry<DeferredResult<Game>,Integer> entry : gameConnections.entrySet()){
                                     Integer gameId = entry.getValue();
-                                    Game game = games.get(gameId);
-                                    entry.getKey().setResult(game);
-                                    log.debug(String.format("set result for game %n connection ",gameId));
+				    log.debug(String.format("set result for game %d connection and games size is %d ",gameId,games.size()));
+				    entry.getKey().setResult(games.get(gameId));
+
                                 }
                             }
                         });
                         commonManager.start();
                         gameManager.start();
-                        for (Game g : games.values()){
-                            if (g.getCurrentNumberPlayers()==g.getNumberPlayers()){
-                                games.remove(g.getId());
-                            }
-                        }
+
 
                         try {
                             gameManager.join();
                             commonManager.join();
+			    for (Game g : games.values()){
+				if (g.getCurrentNumberPlayers()==g.getNumberPlayers()){
+				    games.remove(g.getId());
+				    log.debug(String.format("Remove game %d from games and games size is %d",g.getId(),games.size()));
+				}
+			    }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
